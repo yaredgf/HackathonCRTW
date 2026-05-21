@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>taskii - Leaderboard</title>
+<!-- Google Fonts: Plus Jakarta Sans & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d8e3fb",
+                        "on-primary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "on-tertiary-fixed-variant": "#871d2b",
+                        "on-secondary-fixed": "#001c39",
+                        "surface-dim": "#cfdaf2",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-primary-fixed": "#002203",
+                        "primary-fixed": "#93fa8a",
+                        "on-tertiary-fixed": "#40000b",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#77dd71",
+                        "primary": "#006e16",
+                        "outline-variant": "#becab8",
+                        "on-surface-variant": "#3f4a3c",
+                        "inverse-surface": "#263143",
+                        "primary-fixed-dim": "#77dd71",
+                        "secondary-fixed": "#d3e3ff",
+                        "secondary": "#0060ab",
+                        "on-background": "#111c2d",
+                        "error": "#ba1a1a",
+                        "tertiary": "#a83541",
+                        "secondary-fixed-dim": "#a3c9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006e16",
+                        "surface-container-high": "#dee8ff",
+                        "tertiary-container": "#ed6972",
+                        "surface-variant": "#d8e3fb",
+                        "surface-container-low": "#f0f3ff",
+                        "primary-container": "#a5d6a5",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#600014",
+                        "tertiary-fixed": "#ffdada",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#e7eeff",
+                        "on-secondary-container": "#003e73",
+                        "on-primary-fixed-variant": "#00530e",
+                        "tertiary-fixed-dim": "#ffb3b4",
+                        "on-secondary-fixed-variant": "#004882",
+                        "outline": "#6f7a6a",
+                        "secondary-container": "#68abfe",
+                        "on-primary-container": "#003506",
+                        "on-surface": "#111c2d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-mobile": "16px",
+                        "container-padding-desktop": "32px",
+                        "unit": "8px",
+                        "section-gap": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "label-md": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                        "body-md": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.4", "fontWeight": "700" }],
+                        "headline-xl": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-xl-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "label-lg": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        'ambient-1': '0px 4px 20px rgba(30, 41, 59, 0.05)',
+                        'ambient-2': '0px 8px 30px rgba(67, 167, 67, 0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Smooth scrolling and transitions */
+        html { scroll-behavior: smooth; }
+        .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row antialiased">
+<!-- Mobile TopAppBar (from JSON, visible only on small screens) -->
+<header class="md:hidden bg-surface shadow-[0px_4px_20px_rgba(30,41,59,0.05)] w-full top-0 sticky flex justify-between items-center h-16 px-container-padding-mobile z-40 transition-all duration-200">
+<div class="flex items-center gap-3">
+<span class="font-headline-xl-mobile text-headline-xl-mobile font-extrabold text-primary">taskii</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border-2 border-primary-container">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a young adult with a friendly, encouraging smile, wearing a casual light-colored top. The background is a soft, blurred out outdoor setting with bright natural light, aligning with a positive, modern, light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH_lBBbg0Ya-SJlr4aBXR0t-n-vYsosAr9VJoxgpjKBvp24a67c1H258ifZHjugWp1JvN04M-FZCQLdzMdj-T7sg631qKjZIVikf9mWy2TFh9T8MuFwqP0peqGcpDAx2wJqB4E77JuVgnF5AVKklSWKpp32xlZS8nek-oklBhvrmNVoRsEBnf2-F4bg_O-HV2AJSgr4PCF7GkTZSuiGAaF8cjDKSVswYOrCImLGa_rJHcuIwVq2Cr7S8uqNNSSOnj1A55wQ1TfsvWA"/>
+</div>
+</div>
+</header>
+<!-- Desktop SideNavBar (from JSON, visible on medium+ screens) -->
+<nav class="hidden md:flex flex-col py-8 px-4 gap-2 bg-surface-container-low border-r border-outline-variant h-screen w-64 fixed left-0 top-0 z-30">
+<!-- Header -->
+<div class="mb-8 px-4 flex flex-col gap-1"><div class="flex items-center gap-2 mb-2">
+<img alt="taskii logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAx1EBjvbo_i8MvvYhnWyjMCvMKAAEME18pCpRVq0ufQc8UbTzNZWExaAzJU4X10ufkYqaKeDxAr-bWK_d3TljiGEIV629tl6JYeqa3Oy_syW78m8msfwWCIOfidhvB7usT55D_tOF5Xxl0R6jKtinJqfqou41diS-PxAac7DbpF3nJopWin7qdqwZ-s5hdtn0EKsY10Q4LSUWbDTCYF8A279USyBhGh5xL8SDxPEGQkLd1H5scJ2L5fMZLvKLFTKftqhwU1BSvwhd"/>
+<span class="font-headline-xl text-2xl font-extrabold text-primary tracking-tight">taskii</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant mt-1">¡Cada día lo haces mejor!</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1 flex-grow">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-lg text-label-lg">Dashboard</span>
+</a>
+<!-- Active -->
+<a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container font-bold rounded-xl active:scale-[0.98] transition-transform shadow-sm" href="#">
+<span class="material-symbols-outlined fill" data-icon="leaderboard" data-weight="fill">leaderboard</span>
+<span class="font-label-lg text-label-lg">Ranking</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-colors active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
+<span class="font-label-lg text-label-lg">Logros</span>
+</a>
+</div>
+<!-- CTA -->
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow md:ml-64 p-container-padding-mobile md:p-container-padding-desktop flex flex-col gap-8 w-full max-w-[1280px] mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-4 md:mt-0">
+<div>
+<h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background mb-2">Ranking</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Mira quien ha sido el mayor puntuador de la semana, ¡sigue adelante!</p>
+</div>
+<!-- Time Filter Segmented Control -->
+<div class="bg-surface-container-low p-1 rounded-xl flex inline-flex self-start border border-outline-variant/30">
+<button class="px-4 py-2 rounded-lg bg-surface shadow-sm font-label-lg text-label-lg text-primary transition-all">Esta semana</button>
+<button class="px-4 py-2 rounded-lg text-on-surface-variant hover:text-primary font-label-lg text-label-lg transition-all">Desde el inicio</button>
+</div>
+</div>
+<!-- Top 3 Podium (Bento Grid Style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-end mt-4">
+<!-- Rank 2 -->
+<div class="order-2 md:order-1 bg-surface rounded-2xl p-6 flex flex-col items-center text-center shadow-ambient-1 border border-outline-variant/20 relative overflow-hidden transform hover:-translate-y-1 transition-transform h-[280px] justify-end group">
+<div class="absolute top-0 w-full h-2 bg-secondary-container"></div>
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary-container/10 rounded-full blur-xl group-hover:bg-secondary-container/20 transition-colors"></div>
+<div class="relative w-20 h-20 mb-4 z-10">
+<img alt="Sarah J." class="w-full h-full object-cover rounded-full border-4 border-surface shadow-md" data-alt="A bright, cheerful portrait of a young woman with a warm smile, set against a blurred, airy, light-filled background. The lighting is soft and flattering, emphasizing a positive and encouraging mood suitable for a top achiever profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg9gkrKXqevFtMUoIzvkj7JpWvyrVD1YeYULfbBQ3NkvPRP77h1_RohAdbwNGKEl2RnTKKXxAWBc0i7dXBBTH0xXCoEkXxw6dOiOWL6YmmOPq1GnurRNduZwKdwxtcslL0-DW8pltNreGwHmKMaIK5A8UejB4twTYx8pYJQZIX5Jp-fizvVsl-NpYOfZDWScOi6sToufBLUdVRjgZEEDpn52EzW4RCARcqr-WwNtWyW_ENwMIEzE2r8XLctOy26NmhbfA7XYuI43V3"/>
+<div class="absolute -bottom-2 -right-2 w-8 h-8 bg-surface rounded-full flex items-center justify-center shadow-sm">
+<span class="font-label-lg text-label-lg text-secondary font-bold">2</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1 z-10">Sarah J.</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4 z-10 uppercase tracking-wider">Diseño</p>
+<div class="bg-surface-container-low px-4 py-2 rounded-full flex items-center gap-2 z-10">
+<span class="material-symbols-outlined text-secondary" style="font-size: 18px;">stars</span>
+<span class="font-label-lg text-label-lg text-on-background font-bold">8,450 pts</span>
+</div>
+</div>
+<!-- Rank 1 (Center, Largest) -->
+<div class="order-1 md:order-2 bg-primary-container rounded-2xl p-8 flex flex-col items-center text-center shadow-ambient-2 relative overflow-hidden transform hover:-translate-y-2 transition-transform h-[320px] justify-end group z-10 border border-primary-fixed/30">
+<!-- Decorative background elements for Rank 1 -->
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary-fixed/20 to-transparent pointer-events-none"></div>
+<div class="absolute top-1/4 left-1/4 w-32 h-32 bg-primary-fixed/40 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
+<div class="absolute top-4 w-full flex justify-center">
+<span class="material-symbols-outlined text-on-primary-container fill" data-weight="fill" style="font-size: 32px;">workspace_premium</span>
+</div>
+<div class="relative w-28 h-28 mb-4 z-10">
+<img alt="Alex M." class="w-full h-full object-cover rounded-full border-4 border-surface shadow-lg" data-alt="A confident, smiling portrait of a young man in a well-lit, modern indoor environment. The composition focuses on his encouraging expression, utilizing soft, natural light to create a clean, optimistic, and premium visual tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnayq93q2MbZKUcNgguH-O7Wu-HyzmV53uI87h6uctyYPUc2txEyClnGjiyd_23jIhhWEZCI7kpEGUSr7ZN5yNmcBgiwvRP2jyVwBZ1bXTXeeW5CQadgGDVHDLyD9NBf2JN2QXY86GfxeK0Lh5XIJqr1lbDVArI9a-Tp5qt61ZNoBR0VwMyf924lFROyN8YSH5Jd0aCI3uucYuWgG5lDEYddfl1MP5vxchfzdZdBSOcYcCd_Cai_7lHKKKp_OBiNjXS4Bkg1V_Lx-c"/>
+<div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-10 h-10 bg-surface rounded-full flex items-center justify-center shadow-md border-2 border-primary-container">
+<span class="font-headline-md text-headline-md text-primary font-bold">1</span>
+</div>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-primary-container mb-1 z-10">Alex M.</h3>
+<p class="font-label-md text-label-md text-on-primary-container/80 mb-4 z-10 uppercase tracking-wider">Ingeniero en sistemas</p>
+<div class="bg-surface px-5 py-2.5 rounded-full flex items-center gap-2 z-10 shadow-sm">
+<span class="material-symbols-outlined text-primary fill" data-weight="fill" style="font-size: 20px;">military_tech</span>
+<span class="font-headline-md text-headline-md text-on-background font-extrabold">12,200 pts</span>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="order-3 md:order-3 bg-surface rounded-2xl p-6 flex flex-col items-center text-center shadow-ambient-1 border border-outline-variant/20 relative overflow-hidden transform hover:-translate-y-1 transition-transform h-[260px] justify-end group">
+<div class="absolute top-0 w-full h-2 bg-tertiary-container"></div>
+<div class="relative w-16 h-16 mb-4 z-10">
+<img alt="Emily R." class="w-full h-full object-cover rounded-full border-4 border-surface shadow-md" data-alt="A portrait of an energetic young professional woman looking slightly off-camera with a gentle smile. The setting is bright and minimalistic, using a soft color palette to evoke a sense of calm accomplishment and modern productivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJINWdIP-YNoa8XhnI5prkdtEjcGO4VCHa3Ick5s66PQbiFgw3OqpOhX_PI_c1nHR1He5Qe3z3O7xTqVKvYXRrF0gm0QW4rLomiA0aLPiVTD3rWC6Ya5-lhBRUIAjTS6Kw3m3McTuZvP76go9LZsbiwlL0sfnEpnNoyA9O5dRKP68Z90mUHhUuUC4wt6cP8lsjTgQyT35UmFF4NiHYRkJd64NFBnEYXYXs3mNZ3Q6ED0lPblrX-svA5_HRE_4Rt0vhbXJv2WUhrNon"/>
+<div class="absolute -bottom-2 -left-2 w-8 h-8 bg-surface rounded-full flex items-center justify-center shadow-sm">
+<span class="font-label-lg text-label-lg text-tertiary font-bold">3</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-1 z-10">Emily R.</h3>
+<p class="font-label-md text-label-md text-on-surface-variant mb-4 z-10 uppercase tracking-wider">Marketing</p>
+<div class="bg-surface-container-low px-4 py-2 rounded-full flex items-center gap-2 z-10">
+<span class="material-symbols-outlined text-tertiary" style="font-size: 18px;">stars</span>
+<span class="font-label-lg text-label-lg text-on-background font-bold">7,890 pts</span>
+</div>
+</div>
+</section>
+<!-- Leaderboard List -->
+<section class="mt-8 flex flex-col gap-3">
+<h3 class="font-headline-md text-headline-md text-on-background mb-2">Contendientes</h3>
+<!-- List Header (Desktop only) -->
+<div class="hidden md:flex items-center px-6 py-2 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<div class="w-12 text-center">n.</div>
+<div class="flex-grow pl-4">persona</div>
+<div class="w-32 text-right">Tareas completas</div>
+<div class="w-32 text-right">Puntos totales</div>
+</div>
+<!-- List Item 4 -->
+<div class="bg-surface rounded-xl p-4 md:px-6 md:py-4 flex items-center gap-4 shadow-ambient-1 hover:shadow-ambient-2 hover:-translate-y-0.5 transition-all cursor-pointer border border-transparent hover:border-primary-fixed/30 group">
+<div class="w-8 md:w-12 text-center font-headline-md text-headline-md text-on-surface-variant group-hover:text-primary transition-colors">4</div>
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0">
+<img alt="Michael T." class="w-full h-full object-cover" data-alt="A straightforward headshot of a young man with a neutral, pleasant expression. The background is a solid, very light grey, emphasizing cleanliness and simplicity in a digital interface context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB90BbNZ5XPFB8XGceY7oQRFk8e1ufYKCx6369rby7RBWHMT-6GDTbbBsNOqIDRyqwMeLeGmnXWjOd0QHpD5S2Ew0YzQs9rTQ0rRgDp_m1zbvjePtpFiGf0jDP36WqV0U-K9NxjBh4z9IaVSO90m5DW2l8voV_2cqUDfBzLMpoJ91hLSSfCwaipK_se2z28CDnj5bfefwn2Zx9eL0PD3h4McM7COpn45DuFqoJupA60naSCF_pfOhW8wkCaVlkdG9UdoLFgOsV1AKbX"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">Michael T.</h4>
+<p class="font-label-md text-label-md text-on-surface-variant md:hidden">6,540 pts</p>
+</div>
+<div class="hidden md:block w-32 text-right font-body-md text-body-md text-on-surface-variant">42</div>
+<div class="hidden md:flex w-32 justify-end items-center gap-1">
+<span class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">6,540</span>
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-size: 16px;">bolt</span>
+</div>
+</div>
+<!-- List Item 5 -->
+<div class="bg-surface rounded-xl p-4 md:px-6 md:py-4 flex items-center gap-4 shadow-ambient-1 hover:shadow-ambient-2 hover:-translate-y-0.5 transition-all cursor-pointer border border-transparent hover:border-primary-fixed/30 group">
+<div class="w-8 md:w-12 text-center font-headline-md text-headline-md text-on-surface-variant group-hover:text-primary transition-colors">5</div>
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0">
+<img alt="Jessica W." class="w-full h-full object-cover" data-alt="A candid portrait of a young woman laughing in an office setting. The lighting is bright and cheerful, contributing to an atmosphere of friendly competition and workplace wellness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl7tqWQRvVy8D74jzyAm0wRQ5T3EbcyUpI9EnbFipl0DZkc_mG7k358g20wPStLOqVv0tDbe94LtMPnH1W9HNrd3kKkMlIuwQCuw7DAW5l5Z82gtfK82isrhuWnCn-yIIoJ_YmOvxpukTMi08du71gKVB_COXD-cam6a1XSSxeJHRSJOTe-LOP34-YclORBbY4_8N4_R69uorpZz7IceX50fVpZ2G0Zeiw68bd95mPoBunAmOkVXvzfljDFfjYiAl6Pl9a6WDjngiJ"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">Jessica W.</h4>
+<p class="font-label-md text-label-md text-on-surface-variant md:hidden">6,120 pts</p>
+</div>
+<div class="hidden md:block w-32 text-right font-body-md text-body-md text-on-surface-variant">38</div>
+<div class="hidden md:flex w-32 justify-end items-center gap-1">
+<span class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">6,120</span>
+<span class="material-symbols-outlined text-primary-fixed-dim" style="font-size: 16px;">bolt</span>
+</div>
+</div>
+<!-- List Item 6 (Current User Highlighted) -->
+<div class="bg-surface-container-low rounded-xl p-4 md:px-6 md:py-4 flex items-center gap-4 shadow-ambient-1 hover:shadow-ambient-2 hover:-translate-y-0.5 transition-all cursor-pointer border-l-4 border-l-primary-container group relative overflow-hidden">
+<div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-primary-container/20 to-transparent pointer-events-none"></div>
+<div class="w-8 md:w-12 text-center font-headline-md text-headline-md text-primary font-bold">6</div>
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-primary-container">
+<img alt="You (David K.)" class="w-full h-full object-cover" data-alt="A close-up portrait of a young adult with a friendly, encouraging smile, wearing a casual light-colored top. The background is a soft, blurred out outdoor setting with bright natural light, aligning with a positive, modern, light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM85jwhopj138O77aqZqGg6PJ5EUI69RCuPJJK_GEj-YrPW58L2UufWPOf0i5wi09ClDkhddNpb4xHJsms0xA30VblQTIM4tUravniEO89TKykY9dK0EcRHzVrkjiLjWEUQAAiZXiYsglTipMfNK8Z3fjEsXoZKVeSkdjj1reYfd-kRjYEHmDKiAaWyxSmGjZg8LWXNrCI_VyL_NmccEVvYzovRNmhdkRoht6SeUItw1viMdLTtkYm2VpU_xwVuF1gwQiWx9twjQ3s"/>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-2">
+<h4 class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">You</h4>
+<span class="bg-primary-container/30 text-primary px-2 py-0.5 rounded-full font-label-md text-label-md">Rising!</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface-variant md:hidden">5,900 pts</p>
+</div>
+<div class="hidden md:block w-32 text-right font-body-md text-body-md text-on-surface-variant">35</div>
+<div class="hidden md:flex w-32 justify-end items-center gap-1">
+<span class="font-headline-md text-headline-md text-on-background font-bold" style="font-size: 18px;">5,900</span>
+<span class="material-symbols-outlined text-primary-container fill" data-weight="fill" style="font-size: 16px;">bolt</span>
+</div>
+</div>
+<!-- List Item 7 -->
+<div class="bg-surface rounded-xl p-4 md:px-6 md:py-4 flex items-center gap-4 shadow-ambient-1 hover:shadow-ambient-2 hover:-translate-y-0.5 transition-all cursor-pointer border border-transparent hover:border-primary-fixed/30 group opacity-80 hover:opacity-100">
+<div class="w-8 md:w-12 text-center font-headline-md text-headline-md text-on-surface-variant group-hover:text-primary transition-colors">7</div>
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-container-high flex items-center justify-center text-on-surface-variant font-headline-md">
+                    DB
+                </div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">Daniel B.</h4>
+<p class="font-label-md text-label-md text-on-surface-variant md:hidden">5,200 pts</p>
+</div>
+<div class="hidden md:block w-32 text-right font-body-md text-body-md text-on-surface-variant">29</div>
+<div class="hidden md:flex w-32 justify-end items-center gap-1">
+<span class="font-headline-md text-headline-md text-on-background" style="font-size: 18px;">5,200</span>
+<span class="material-symbols-outlined text-outline" style="font-size: 16px;">bolt</span>
+</div>
+</div>
+</section>
+<!-- Bottom spacing -->
+<div class="h-16 md:h-8"></div>
+</main>
+<!-- Mobile Bottom Navigation (derived from JSON labels/icons for basic mobile usability, normally would hide if TopAppBar has everything, but TopAppBar lacks nav links here) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface shadow-[0px_-4px_20px_rgba(30,41,59,0.05)] border-t border-outline-variant/20 flex justify-around items-center h-16 pb-safe z-40 px-2">
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-semibold leading-none">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary font-bold" href="#">
+<div class="bg-primary-container px-4 py-1 rounded-full flex items-center justify-center mb-0.5">
+<span class="material-symbols-outlined text-on-primary-container fill" data-icon="leaderboard" data-weight="fill">leaderboard</span>
+</div>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="workspace_premium">workspace_premium</span>
+<span class="text-[10px] font-semibold leading-none">Rewards</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-[10px] font-semibold leading-none">Settings</span>
+</a>
+</nav>
+</body></html>

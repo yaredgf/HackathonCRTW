@@ -207,7 +207,7 @@ router.post("/accept-invite", async (req, res) => {
   if (invite.acceptedAt) {
     return res.status(409).json({ error: "Invite already used" });
   }
-  if (invite.expiresAt < Math.floor(Date.now() / 1000)) {
+  if (invite.expiresAt.getTime() < Date.now()) {
     return res.status(410).json({ error: "Invite expired" });
   }
 
@@ -249,7 +249,7 @@ router.post("/accept-invite", async (req, res) => {
   }
 
   db.update(invites)
-    .set({ acceptedAt: Math.floor(Date.now() / 1000) })
+    .set({ acceptedAt: new Date() })
     .where(eq(invites.id, invite.id))
     .run();
 

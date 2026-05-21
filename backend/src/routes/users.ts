@@ -242,7 +242,7 @@ router.post(
     const groupId = req.params.groupId;
 
     const token = crypto.randomBytes(24).toString("hex");
-    const expiresAt = Math.floor(Date.now() / 1000) + (expiresInHours ?? 72) * 3600;
+    const expiresAt = new Date(Date.now() + (expiresInHours ?? 72) * 3600 * 1000);
 
     db.insert(invites)
       .values({

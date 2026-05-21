@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
+    "prestart": "npm run build",
     "start": "node dist/index.js",
     "drizzle:generate": "drizzle-kit generate:sqlite --schema ./src/db/schema.ts --out ./drizzle",
     "drizzle:migrate": "drizzle-kit migrate --config ./drizzle.config.ts"
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.13",
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "drizzle-kit": "^0.31.10",

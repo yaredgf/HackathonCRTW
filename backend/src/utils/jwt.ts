@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const jwtSecret = process.env.JWT_SECRET ?? "change-me";
-const jwtExpiresIn = process.env.JWT_EXPIRES_IN ?? "7d";
+const jwtExpiresIn = (process.env.JWT_EXPIRES_IN ?? "7d") as jwt.SignOptions["expiresIn"];
 
 export interface JwtPayload {
   sub: string;
